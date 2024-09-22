@@ -1,18 +1,21 @@
+import FullScreenContainer from "../components/FullScreenContainer";
+import { GAME_CONDITIONS } from "../core";
 import Button from "../components/Button";
-import Title from "../components/Title";
-import { useRouter } from "../router/RouterProvider";
+import SettingsContainer from "../components/SettingsContainer";
 
 function Home() {
-    const { navigateTo, currentRoute } = useRouter();
-    console.log(currentRoute);
-
     return (
-        <div className="flex flex-col justify-start items-start">
-            <Title text="Main Menu" />
-            <Button text="Play" disabled />
-            <Button text="Settings" onClick={() => navigateTo("/settings")} />
-            <Button text="About" onClick={console.log} />
-        </div>
+        <FullScreenContainer>
+            <SettingsContainer title="Main Menu" back={false}>
+                <Button text="Play" condition={GAME_CONDITIONS.play} />
+                <Button
+                    text="Settings"
+                    condition={GAME_CONDITIONS.settings}
+                    onClick={"settings"}
+                />
+                <Button text="About" onClick={console.log} />
+            </SettingsContainer>
+        </FullScreenContainer>
     );
 }
 

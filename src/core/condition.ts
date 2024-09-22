@@ -9,6 +9,7 @@ export function evaluateCondtion(
     condition: Condition,
     gameState: GameState,
 ): boolean | string {
+    if (condition === undefined) console.log("error: condition is undefined");
     if (typeof condition === "boolean" || typeof condition === "string")
         return condition;
     return evaluateCondtion(condition(gameState), gameState);
@@ -26,8 +27,7 @@ export function conditionArray(...conditions: Condition[]): Condition {
 
 export function conditionObject(obj: Record<string, Condition>): Condition {
     return (gameState: GameState) => {
-        for (const key in Object.entries(obj)) {
-            const value = obj[key];
+        for (const [_key, value] of Object.entries(obj)) {
             const res = evaluateCondtion(value, gameState);
             if (res !== true) return res;
         }
@@ -35,9 +35,17 @@ export function conditionObject(obj: Record<string, Condition>): Condition {
     };
 }
 
-export function customMessage(cond: Condition, message: string): Condition {
+export function customMessage(
+    cond: Condition,
+    message: string | ((previousMessage: string) => string),
+): Condition {
     return (gameState: GameState) => {
-        if (evaluateCondtion(cond, gameState) !== true) return message;
+        const res = evaluateCondtion(cond, gameState);
+        if (res !== true) {
+            if (typeof message === "string") return message;
+            if (res === false) return false;
+            return message(res);
+        }
         return true;
     };
 }
@@ -75,7 +83,7 @@ export function oneOf(
     extract: (gameState: GameState) => string | number | undefined,
     values: (string | number)[],
     longMessage?: boolean,
-) {
+): Condition {
     return (gameState: GameState) => {
         const value = extract(gameState);
         if (values.find((x) => x == value) !== undefined) return true;

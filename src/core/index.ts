@@ -58,7 +58,7 @@ const localization = {
     ]),
     preferredLanguage: of(
         "Preferred Language",
-        (gs) => gs.localization.localization,
+        (gs) => gs.localization.preferredLanguage,
         ["EN", "RU"],
     ),
 };
@@ -86,12 +86,17 @@ export const GAME_CONDITIONS = {
         //     localization.preferredLanguage,
         //     "Please select your preferred uanguage.",
         // ),
-        message(user.username, "Please set select a proper username."),
+        // message(user.username, "Please set select a proper username."),
+        // message(
+        //     worldGenSettings,
+        //     "Please configure your world generation settings.",
+        // ),
         message(
             worldGenSettings,
-            "Please configure your world generation settings.",
+            (msg) => `Invalid world generation configuration: ${msg}`,
         ),
     ),
+    settings: true,
     user,
     localization,
     worldGenSettings,

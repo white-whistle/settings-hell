@@ -1,30 +1,82 @@
 import clsx from "clsx";
+import { Condition } from "../core/condition";
+import { useGame } from "../ctx/GameStateProvider";
+import { Link } from "wouter-preact";
+
+export type ButtonVariant =
+    | "neutral"
+    | "primary"
+    | "secondary"
+    | "accent"
+    | "info"
+    | "success"
+    | "warning";
+
+function ButtonInner({
+    text,
+    variant,
+    disabled,
+    onClick,
+    tooltip,
+}: {
+    text: string;
+    variant?: ButtonVariant;
+    disabled?: boolean;
+    onClick?: () => void;
+    tooltip?: string;
+}) {
+    const btn = (
+        <button
+            onClick={onClick}
+            className={clsx(
+                "btn",
+                variant && `btn-${variant}`,
+                disabled && "btn-disabled",
+                "text-xl",
+            )}
+        >
+            {text}
+        </button>
+    );
+
+    if (tooltip !== undefined)
+        return (
+            <div className="tooltip" data-tip={tooltip}>
+                {btn}
+            </div>
+        );
+
+    return btn;
+}
 
 function Button({
     text,
     onClick,
-    disabled,
-}: { text: string; onClick?: () => void; disabled?: boolean }) {
+    condition,
+}: {
+    text: string;
+    onClick?: "back" | (() => void) | string;
+    condition?: Condition;
+}) {
+    const { evaluateCondtion } = useGame();
+    const res = evaluateCondtion(condition);
+    const disabled = res !== true;
+    const tooltip = typeof res === "string" ? res : undefined;
+
+    if (typeof onClick === "string")
+        return (
+            <Link to={onClick} disabled={disabled}>
+                <ButtonInner text={text} disabled={disabled} tooltip={tooltip} />
+            </Link>
+        );
+
     return (
-        <button
-            className={clsx(
-                "text-2xl text-slate-200 bg-slate-600 border-2 border-black rounded-md p-4 font-bold",
-                disabled && "text-slate-300 cursor-not-allowed",
-                !disabled &&
-                "hover:text-slate-100 hover:bg-slate-700 hover:scale-105 transition-all duration-100 ",
-            )}
-            style={
-                disabled
-                    ? {
-                        // https://css-tricks.com/stripes-css/
-                        background: `repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)`,
-                    }
-                    : {}
-            }
+        <ButtonInner
+            text={text}
             onClick={onClick}
-        >
-            {text}
-        </button>
+            disabled={disabled}
+            tooltip={tooltip}
+        />
     );
 }
 
