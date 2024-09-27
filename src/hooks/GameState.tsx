@@ -5,6 +5,8 @@ import { persist, PersistOptions } from 'zustand/middleware';
 export type GameState = {
 	username: string;
 	tos: boolean;
+	theme: 'dark' | 'light';
+	noprop: '';
 };
 
 type MyPersist = (
@@ -17,6 +19,8 @@ export const useGameState = create<GameState>()(
 		(_set, _get) => ({
 			username: '',
 			tos: false,
+			theme: 'light',
+			noprop: '',
 		}),
 		{ name: 'SettingsHell-GameState' }
 	)
