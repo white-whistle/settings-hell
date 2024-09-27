@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "daisyui": "^4.12.10",
     "immer": "^10.1.1",
     "preact": "^10.23.1",
+    "radash": "^12.1.0",
+    "react-daisyui": "^5.0.5",
     "tailwind-merge": "^2.5.2",
     "wouter-preact": "^3.3.5",
     "zustand": "5.0.0-rc.2"
