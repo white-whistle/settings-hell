@@ -1,7 +1,8 @@
-import { Link, useLocation } from 'wouter-preact';
+import { useLocation } from 'wouter-preact';
 import { Routes } from '.';
-import Button from '../components/game/Button';
 import { Condition } from '../core/Condition';
+import { G } from '../components/game';
+import MotionLink from '../components/MotionLink';
 
 const playCondition = Condition.Failed('Not yet implemented');
 
@@ -15,23 +16,31 @@ function Home() {
 			<h1 className='text-6xl'>Settings Hell</h1>
 
 			<div className='flex flex-col gap-2'>
-				<Button
+				<G.Button
 					condition={playCondition}
 					className='w-[200px]'
-					size='lg'
+					variant='contained'
 				>
 					Play
-				</Button>
-				<Link
+				</G.Button>
+
+				<G.Button
+					component={MotionLink}
 					to={Routes.SETTINGS.path}
-					className='btn w-[200px] btn-lg'
+					className='w-[200px]'
+					variant='contained'
 					onClick={() => navigate(Routes.SETTINGS.path)}
 				>
 					Settings
-				</Link>
-				<Button onClick={console.log} className='w-[200px]' size='lg'>
+				</G.Button>
+
+				<G.Button
+					onClick={console.log}
+					className='w-[200px]'
+					variant='contained'
+				>
 					About
-				</Button>
+				</G.Button>
 			</div>
 		</div>
 	);
