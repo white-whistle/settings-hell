@@ -1,5 +1,10 @@
-import { render } from "preact";
-import App from "./app.tsx";
-import "./index.css";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './app';
+import './index.css';
 
-render(<App />, document.getElementById("app")!);
+createRoot(document.getElementById('app')!).render(
+	<StrictMode>
+		<App />
+	</StrictMode>
+);

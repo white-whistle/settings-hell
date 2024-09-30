@@ -1,4 +1,4 @@
-import React from 'preact/compat';
+import React from 'react';
 import { Condition, ConditionResult } from '../../core/Condition';
 import { Paths } from '../../types';
 import { GameState } from '../../hooks/GameState';
@@ -22,9 +22,9 @@ export default function gameComponent<
 >(Base: TBase, useProps: TUseProps) {
 	type AddedProps = ReturnType<TUseProps>;
 
-	type GameComponentProps<TPath extends GameStatePath> = Exclude<
+	type GameComponentProps<TPath extends GameStatePath> = Omit<
 		React.ComponentProps<TBase>,
-		AddedProps
+		keyof AddedProps
 	> &
 		GameComponentBaseProps<TPath>;
 

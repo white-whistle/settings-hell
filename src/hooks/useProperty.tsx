@@ -1,7 +1,7 @@
 import { get, isFunction, set } from 'radash';
 import { Get, Paths } from '../types';
 import { GameState, useGameState } from './GameState';
-import { useCallback } from 'preact/hooks';
+import { useCallback } from 'react';
 import useAsRef from './useAsRef';
 
 export type ValueOrCallback<T> = T | ((prev: T) => T);

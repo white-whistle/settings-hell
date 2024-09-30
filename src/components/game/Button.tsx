@@ -1,14 +1,12 @@
-import { Button, Tooltip } from '@mui/material';
+import { Button, ButtonProps, Tooltip } from '@mui/material';
 import gameComponent from './gameComponent';
-import { ComponentProps, ReactNode } from 'preact/compat';
+import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-
-const MotionButton = motion(Button);
 
 const Base = ({
 	tooltip,
 	...props
-}: ComponentProps<typeof MotionButton> & {
+}: ButtonProps & {
 	tooltip?: ReactNode;
 	component?: any;
 }) => {

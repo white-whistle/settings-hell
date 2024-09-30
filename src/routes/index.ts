@@ -1,4 +1,4 @@
-import { JSX, ReactNode } from "preact/compat";
+import { JSX, ReactNode } from "react";
 import Home from "./Home";
 import Route404 from "./Route404";
 import Settings from "./Settings";

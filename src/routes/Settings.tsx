@@ -1,4 +1,4 @@
-import { Route, Switch } from 'wouter-preact';
+import { Route, Switch } from 'wouter';
 import { SETTINGS_ROUTES_LIST } from './settings';
 
 function Settings() {
