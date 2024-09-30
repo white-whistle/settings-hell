@@ -1,4 +1,4 @@
-import React from 'preact/compat';
+import React from 'react';
 import { Condition } from '../core/Condition';
 import { useGameState } from './GameState';
 import { useShallow } from 'zustand/react/shallow';

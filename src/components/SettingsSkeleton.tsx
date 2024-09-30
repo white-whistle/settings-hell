@@ -1,11 +1,13 @@
-import { ComponentProps } from 'preact';
+import { ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { Link, useRoute } from 'wouter-preact';
+import { Link, useRoute } from 'wouter';
 import { Routes } from '../routes';
 import { SETTINGS_ROUTES_LIST } from '../routes/settings';
 import ThemeSwitcher from './ThemeSwitcher';
-import { IconButton, List, ListItemButton } from '@mui/material';
+import { Box, IconButton, List, ListItemButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { motion } from 'framer-motion';
+import MotionLink from './MotionLink';
 
 function SettingsSkeleton({
 	children,
@@ -20,19 +22,21 @@ function SettingsSkeleton({
 	const selectedName = selectedRoute?.name ?? selected;
 
 	return (
-		<div
+		<motion.div
 			className={twMerge(
 				'flex flex-col flex-1 w-full h-full',
 				className as string
 			)}
-			{...rest}
+			{...(rest as any)}
 		>
 			{/* header */}
 			<div className='flex p-4 gap-8 items-center'>
 				<IconButton
-					component={Link}
+					component={MotionLink}
 					to={'~' + Routes.HOME.path}
 					className='btn'
+					whileHover={{ scale: 1.2 }}
+					whileTap={{ scale: 0.9 }}
 				>
 					<ArrowBackIcon />
 				</IconButton>
@@ -45,7 +49,7 @@ function SettingsSkeleton({
 
 			<div className='flex flex-1 w-full p-4 gap-4'>
 				{/* aside */}
-				<div className='flex flex-row min-w-[250px] bg-base-200 rounded-xl'>
+				<Box className='flex flex-row min-w-[250px] rounded-xl bg-surface-mid'>
 					<List className='w-full'>
 						{SETTINGS_ROUTES_LIST.map((route) => (
 							<ListItemButton
@@ -57,18 +61,18 @@ function SettingsSkeleton({
 							</ListItemButton>
 						))}
 					</List>
-				</div>
+				</Box>
 
 				{/* content */}
 				<div className='flex flex-col flex-1 gap-2'>
-					<h2 className='text-3xl p-4 w-full text-center align-center bg-base-100 sticky top-0'>
+					<h2 className='text-3xl p-4 w-full text-center align-center sticky top-0'>
 						{selectedName}
 					</h2>
 
 					{children}
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 }
 

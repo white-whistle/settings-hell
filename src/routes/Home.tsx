@@ -1,17 +1,20 @@
-import { useLocation } from 'wouter-preact';
+import { useLocation } from 'wouter';
 import { Routes } from '.';
 import { Condition } from '../core/Condition';
 import { G } from '../components/game';
 import MotionLink from '../components/MotionLink';
+import { motion } from 'framer-motion';
 
 const playCondition = Condition.Failed('Not yet implemented');
 
 function Home() {
 	const [, navigate] = useLocation();
 	return (
-		<div
+		<motion.div
 			className='flex flex-col w-full h-full items-center justify-center gap-10'
-			data-theme='coffee'
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
 		>
 			<h1 className='text-6xl'>Settings Hell</h1>
 
@@ -42,7 +45,7 @@ function Home() {
 					About
 				</G.Button>
 			</div>
-		</div>
+		</motion.div>
 	);
 }
 
