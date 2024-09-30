@@ -1,3 +1,4 @@
+import { FormControlLabel, Typography } from '@mui/material';
 import Checkbox from '../../components/game/Checkbox';
 import TextField from '../../components/game/TextField';
 import Horizontal from '../../components/Horizontal';
@@ -35,28 +36,32 @@ function Sandbox1() {
 				</Vertical>
 
 				<Vertical>
-					<Horizontal className='items-center gap-1 text-white'>
-						<Checkbox
+					<Horizontal className='items-center gap-1'>
+						<FormControlLabel
 							label='Terms of Service'
-							condition={tosCheckboxRequirement}
-							property='tos'
+							control={
+								<Checkbox
+									condition={tosCheckboxRequirement}
+									property='tos'
+								/>
+							}
 						/>
 					</Horizontal>
 				</Vertical>
 
 				{/* indications */}
-				<Horizontal className='gap-4 text-white'>
+				<Horizontal className='gap-4'>
 					<Horizontal className='items-center gap-1'>
 						<LED condition={c1} />
-						<div>hello</div>
+						<Typography>hello</Typography>
 					</Horizontal>
 					<Horizontal className='items-center gap-1'>
 						<LED condition={c2} />
-						<div>world</div>
+						<Typography>world</Typography>
 					</Horizontal>
 					<Horizontal className='items-center gap-1'>
 						<LED condition={c3} />
-						<div>ToS</div>
+						<Typography>ToS</Typography>
 					</Horizontal>
 				</Horizontal>
 			</Vertical>

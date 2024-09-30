@@ -1,15 +1,30 @@
-import { Button, ButtonProps, Tooltip } from 'react-daisyui';
+import { Button, Tooltip } from '@mui/material';
 import gameComponent from './gameComponent';
-import { ReactNode } from 'preact/compat';
+import { ComponentProps, ReactNode } from 'preact/compat';
+import { motion } from 'framer-motion';
 
-const Base = ({ tooltip, ...props }: ButtonProps & { tooltip?: ReactNode }) => {
+const MotionButton = motion(Button);
+
+const Base = ({
+	tooltip,
+	...props
+}: ComponentProps<typeof MotionButton> & {
+	tooltip?: ReactNode;
+	component?: any;
+}) => {
 	return (
-		<Tooltip
-			message={tooltip as string}
-			open={!tooltip ? false : undefined}
-		>
-			{/* @ts-ignore */}
-			<Button {...props} />
+		<Tooltip title={tooltip as string}>
+			<span>
+				{/* @ts-ignore */}
+				<Button
+					// @ts-ignore
+					component={motion.button}
+					{...props}
+					whileHover={{ scale: 1.2 }}
+					whileTap={{ scale: 0.9 }}
+					disableRipple
+				/>
+			</span>
 		</Tooltip>
 	);
 };

@@ -1,10 +1,11 @@
 import { ComponentProps } from 'preact';
-import { Menu } from 'react-daisyui';
 import { twMerge } from 'tailwind-merge';
 import { Link, useRoute } from 'wouter-preact';
 import { Routes } from '../routes';
 import { SETTINGS_ROUTES_LIST } from '../routes/settings';
 import ThemeSwitcher from './ThemeSwitcher';
+import { IconButton, List, ListItemButton } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function SettingsSkeleton({
 	children,
@@ -27,10 +28,14 @@ function SettingsSkeleton({
 			{...rest}
 		>
 			{/* header */}
-			<div className='flex p-4 gap-8'>
-				<Link to={'~' + Routes.HOME.path} className='btn'>
-					Back
-				</Link>
+			<div className='flex p-4 gap-8 items-center'>
+				<IconButton
+					component={Link}
+					to={'~' + Routes.HOME.path}
+					className='btn'
+				>
+					<ArrowBackIcon />
+				</IconButton>
 				<h1 className='text-4xl'>Settings</h1>
 
 				<div className='flex ml-auto'>
@@ -41,20 +46,17 @@ function SettingsSkeleton({
 			<div className='flex flex-1 w-full p-4 gap-4'>
 				{/* aside */}
 				<div className='flex flex-row min-w-[250px] bg-base-200 rounded-xl'>
-					<Menu className='w-full'>
+					<List className='w-full'>
 						{SETTINGS_ROUTES_LIST.map((route) => (
-							<Menu.Item>
-								<Link
-									to={route.path}
-									className={twMerge(
-										selected === route.id && 'active'
-									)}
-								>
-									{route.name ?? route.id}
-								</Link>
-							</Menu.Item>
+							<ListItemButton
+								component={Link}
+								to={route.path}
+								selected={selected === route.id}
+							>
+								{route.name ?? route.id}
+							</ListItemButton>
 						))}
-					</Menu>
+					</List>
 				</div>
 
 				{/* content */}

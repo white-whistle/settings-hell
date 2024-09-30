@@ -1,7 +1,7 @@
-import { Input } from 'react-daisyui';
+import { TextField } from '@mui/material';
 import gameComponent from './gameComponent';
 
-export default gameComponent(Input, ({ result, state, setState }) => {
+export default gameComponent(TextField, ({ result, state, setState }) => {
 	return {
 		disabled: !result.passed,
 		value: state,
