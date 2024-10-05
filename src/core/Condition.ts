@@ -40,3 +40,7 @@ Condition.check = (gameState: GameState, conditions: Condition[]) => {
 Condition.and = (...conditions: Condition[]) => {
 	return Condition(gameState => Condition.check(gameState, conditions))
 }
+
+Condition.from = (predicate: (gameState: GameState) => boolean, errorMessage: string) => {
+	return Condition((state) => Condition.Result.from(predicate(state), errorMessage))
+}

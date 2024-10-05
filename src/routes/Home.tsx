@@ -29,6 +29,7 @@ function Home() {
 
 				<G.Button
 					component={MotionLink}
+					// @ts-ignore
 					to={Routes.SETTINGS.path}
 					className='w-[200px]'
 					variant='contained'

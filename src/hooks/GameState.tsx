@@ -3,9 +3,15 @@ import { create, StateCreator } from 'zustand';
 import { persist, PersistOptions } from 'zustand/middleware';
 
 export type GameState = {
-	username: string;
-	tos: boolean;
+	user: {
+		username: string;
+	};
+	general: {
+		tos: boolean;
+	};
+
 	theme: 'dark' | 'light';
+
 	noprop: '';
 };
 
@@ -17,8 +23,12 @@ type MyPersist = (
 export const useGameState = create<GameState>()(
 	(persist as MyPersist)(
 		(_set, _get) => ({
-			username: '',
-			tos: false,
+			general: {
+				tos: false,
+			},
+			user: {
+				username: '',
+			},
 			theme: 'light',
 			noprop: '',
 		}),
