@@ -1,4 +1,4 @@
-import React from 'preact/compat';
+import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
 function Horizontal(props: React.ComponentProps<'div'>) {

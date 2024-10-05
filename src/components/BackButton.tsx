@@ -1,4 +1,4 @@
-import { useLocation } from 'wouter-preact';
+import { useLocation } from 'wouter';
 import Button from './Button';
 import { Routes } from '../routes';
 
