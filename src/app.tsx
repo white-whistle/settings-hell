@@ -4,6 +4,7 @@ import { useHashLocation } from 'wouter/use-hash-location';
 import { useGameState } from './hooks/GameState';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { AnimatePresence } from 'framer-motion';
+import ModalRenderer from './core/ModalRenderer';
 
 const darkTheme = createTheme({
 	palette: {
@@ -22,6 +23,7 @@ function App() {
 	return (
 		<ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
 			<CssBaseline>
+				<ModalRenderer />
 				<div
 					className={
 						'flex flex-col justify-center items-center top-0 lef-0 w-svw h-svh'

@@ -3,8 +3,10 @@ lockfileVersion: 5.4
 specifiers:
   '@emotion/react': ^11.13.3
   '@emotion/styled': ^11.13.0
+  '@legendapp/state': 3.0.0-beta.5
   '@mui/icons-material': ^6.1.1
   '@mui/material': ^6.1.1
+  '@sgty/kontext-react': ^0.0.0
   '@types/react': ^18.3.10
   '@types/react-dom': ^18.3.0
   '@vitejs/plugin-react': ^4.3.2
@@ -26,8 +28,10 @@ specifiers:
 dependencies:
   '@emotion/react': 11.13.3_5lvppdaarzv2rxqddcklskldj4
   '@emotion/styled': 11.13.0_bdkrliaxeqelfzaqckjw7hpccq
+  '@legendapp/state': 3.0.0-beta.5_react@18.3.1
   '@mui/icons-material': 6.1.1_xt4ztqmm52cmyywgf4jhcueqs4
   '@mui/material': 6.1.1_bylrhtegngmapxb7n6oe363mxq
+  '@sgty/kontext-react': 0.0.0
   '@vitejs/plugin-react': 4.3.2_vite@5.4.7
   clsx: 2.1.1
   framer-motion: 11.9.0_nnrd3gsncyragczmpvfhocinkq
@@ -604,6 +608,14 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  /@legendapp/state/3.0.0-beta.5_react@18.3.1:
+    resolution: {integrity: sha512-bd1mXgk3nGDPk5eqejPP/VNe5AglYcNEFVDC6Y2vxvkQ4E9BNAjhK3Ih0LhdESSSF/FRojgN6wNvQfzC83cq0g==}
+    dependencies:
+      use-sync-external-store: 1.2.2_react@18.3.1
+    transitivePeerDependencies:
+      - react
+    dev: false
+
   /@mui/core-downloads-tracker/6.1.1:
     resolution: {integrity: sha512-VdQC1tPIIcZAnf62L2M1eQif0x2vlKg3YK4kGYbtijSH4niEgI21GnstykW1vQIs+Bc6L+Hua2GATYVjilJ22A==}
     dev: false
@@ -908,6 +920,13 @@ packages:
     os: [win32]
     requiresBuild: true
     optional: true
+
+  /@sgty/kontext-react/0.0.0:
+    resolution: {integrity: sha512-N3fuR35eXzbBMEQSUYBj4KrrVz/nh5Hw0OadaXNzYu9scJzwV/4g+uQLFFw4vO295zgElLjjqbZYhK5SyZnbJg==}
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1_react@18.3.1
+    dev: false
 
   /@types/babel__core/7.20.5:
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}

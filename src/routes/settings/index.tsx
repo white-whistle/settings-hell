@@ -1,21 +1,28 @@
 import { Route } from '..';
-import Sandbox1 from './Sandbox1';
+import General from './General';
+import SettingsIcon from '@mui/icons-material/Settings';
+import PersonIcon from '@mui/icons-material/Person';
+import User from './User';
 
 export const SettingsRoutes = {
-	SANDBOX1: {
-		id: 'sandbox1',
-		path: '/sandbox1',
-		component: Sandbox1,
+	GENERAL: {
+		id: 'general',
+		path: '/general',
+		name: 'General',
+		component: General,
+		icon: SettingsIcon,
 	},
-	SANDBOX2: {
-		id: 'sandbox2',
-		path: '/sandbox2',
-		component: Sandbox1,
+	USER: {
+		id: 'user',
+		path: '/user',
+		name: 'User',
+		component: User,
+		icon: PersonIcon,
 	},
 	SANDBOX3: {
 		id: 'sandbox3',
 		path: '/sandbox3',
-		component: Sandbox1,
+		component: General,
 	},
 } satisfies Record<string, Route>;
 

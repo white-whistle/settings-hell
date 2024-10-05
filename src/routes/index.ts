@@ -1,4 +1,4 @@
-import { JSX, ReactNode } from "react";
+import { ComponentType, JSX, ReactNode } from "react";
 import Home from "./Home";
 import Route404 from "./Route404";
 import Settings from "./Settings";
@@ -8,6 +8,7 @@ export type Route = {
 	id: string;
 	name?: ReactNode;
 	nest?: boolean;
+	icon?: ComponentType;
 	component: () => JSX.Element;
 };
 

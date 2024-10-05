@@ -4,7 +4,14 @@ import { Link, useRoute } from 'wouter';
 import { Routes } from '../routes';
 import { SETTINGS_ROUTES_LIST } from '../routes/settings';
 import ThemeSwitcher from './ThemeSwitcher';
-import { Box, IconButton, List, ListItemButton } from '@mui/material';
+import {
+	Box,
+	IconButton,
+	List,
+	ListItemButton,
+	ListItemIcon,
+	ListItemText,
+} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { motion } from 'framer-motion';
 import MotionLink from './MotionLink';
@@ -49,27 +56,41 @@ function SettingsSkeleton({
 
 			<div className='flex flex-1 w-full p-4 gap-4'>
 				{/* aside */}
-				<Box className='flex flex-row min-w-[250px] rounded-xl bg-surface-mid'>
-					<List className='w-full'>
+				<Box className='flex flex-row min-w-[250px] rounded-xl'>
+					<List className='w-full' disablePadding>
 						{SETTINGS_ROUTES_LIST.map((route) => (
 							<ListItemButton
 								component={Link}
 								to={route.path}
 								selected={selected === route.id}
+								sx={{ borderRadius: '200px' }}
+								key={route.id}
 							>
-								{route.name ?? route.id}
+								{route.icon && (
+									<ListItemIcon
+										sx={{ minWidth: 0, mr: '16px' }}
+									>
+										<route.icon />
+									</ListItemIcon>
+								)}
+
+								<ListItemText
+									primary={route.name ?? route.id}
+								/>
 							</ListItemButton>
 						))}
 					</List>
 				</Box>
 
 				{/* content */}
-				<div className='flex flex-col flex-1 gap-2'>
-					<h2 className='text-3xl p-4 w-full text-center align-center sticky top-0'>
+				<div className='flex flex-col flex-1 gap-2 bg-surface-mid rounded-3xl'>
+					<h2 className='text-3xl px-4 py-8 w-full align-center sticky top-0'>
 						{selectedName}
 					</h2>
 
-					{children}
+					<div className='flex flex-col flex-1 gap-2 p-4'>
+						{children}
+					</div>
 				</div>
 			</div>
 		</motion.div>
