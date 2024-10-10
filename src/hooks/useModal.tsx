@@ -22,16 +22,22 @@ export function closeAllMModals() {
 export default function useModal<
 	TModal extends ComponentType<{ onClose: () => void }>
 >(Modal: TModal) {
-	return {
-		open: (props: Omit<ComponentProps<TModal>, 'onClose'>) => {
-			const entry = addModal({
-				comp: Modal,
-				props,
-			});
+	function open<T extends {}>(): () => void;
+	function open<T extends Omit<ComponentProps<TModal>, 'onClose'>>(
+		props: T
+	): () => void;
+	function open<T>(props?: T) {
+		const entry = addModal({
+			comp: Modal,
+			props,
+		});
 
-			return () => {
-				closeModal(entry);
-			};
-		},
+		return () => {
+			closeModal(entry);
+		};
+	}
+
+	return {
+		open,
 	};
 }

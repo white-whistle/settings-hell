@@ -3,6 +3,10 @@ import General from './General';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 import User from './User';
+import BlackMarket from './BlackMarket';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import License from './License';
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 
 export const SettingsRoutes = {
 	GENERAL: {
@@ -19,10 +23,19 @@ export const SettingsRoutes = {
 		component: User,
 		icon: PersonIcon,
 	},
-	SANDBOX3: {
-		id: 'sandbox3',
-		path: '/sandbox3',
-		component: General,
+	License: {
+		id: 'license',
+		path: '/license',
+		name: 'License',
+		component: License,
+		icon: BadgeOutlinedIcon,
+	},
+	BLACK_MARKET: {
+		id: 'black_market',
+		path: '/black_market',
+		name: 'Black Market',
+		component: BlackMarket,
+		icon: StorefrontIcon,
 	},
 } satisfies Record<string, Route>;
 

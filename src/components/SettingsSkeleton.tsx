@@ -84,11 +84,11 @@ function SettingsSkeleton({
 
 				{/* content */}
 				<div className='flex flex-col flex-1 gap-2 bg-surface-mid rounded-3xl'>
-					<h2 className='text-3xl px-4 py-8 w-full align-center sticky top-0'>
+					<h2 className='text-3xl px-8 py-8 w-full align-center sticky top-0'>
 						{selectedName}
 					</h2>
 
-					<div className='flex flex-col flex-1 gap-2 p-4'>
+					<div className='flex flex-col flex-1 gap-2 p-8'>
 						{children}
 					</div>
 				</div>

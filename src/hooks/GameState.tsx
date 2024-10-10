@@ -2,12 +2,19 @@ import { produce } from 'immer';
 import { create, StateCreator } from 'zustand';
 import { persist, PersistOptions } from 'zustand/middleware';
 
+type Vector<
+	N extends number,
+	T,
+	R extends unknown[] = []
+> = R['length'] extends N ? R : Vector<N, T, [T, ...R]>;
+
 export type GameState = {
 	user: {
 		username: string;
 	};
 	general: {
 		tos: boolean;
+		antBuffer: Vector<10, boolean>;
 	};
 
 	theme: 'dark' | 'light';
@@ -25,6 +32,10 @@ export const useGameState = create<GameState>()(
 		(_set, _get) => ({
 			general: {
 				tos: false,
+				antBuffer: Array.from({ length: 10 }, () => false) as Vector<
+					10,
+					boolean
+				>,
 			},
 			user: {
 				username: '',

@@ -44,3 +44,14 @@ Condition.and = (...conditions: Condition[]) => {
 Condition.from = (predicate: (gameState: GameState) => boolean, errorMessage: string) => {
 	return Condition((state) => Condition.Result.from(predicate(state), errorMessage))
 }
+
+Condition.builder = (getter: (gameState: GameState) => any) => {
+	return {
+		enabled(name: string) {
+			return Condition((state) => Condition.Result.from(getter(state) === true, `${name} must be enabled!`))
+		},
+		disabled(name: string) {
+			return Condition((state) => Condition.Result.from(getter(state) === false, `${name} must be disabled!`))
+		}
+	}
+}

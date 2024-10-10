@@ -8,7 +8,11 @@ const usernameIncludes = (content: string) => {
 export default {
 	general: {
 		tos: {
-			enabled: Condition.from((state) => state.general.tos, 'ToS must be enabled')
+			enabled: Condition.from((state) => state.general.tos, 'ToS must be enabled'),
+			disabled: Condition.from((state) => state.general.tos, 'ToS must be disabled'),
+		},
+		antBuffer: {
+			every: Condition.from(state => state.general.snake.every(Boolean), 'All switches must be checked')
 		}
 	},
 	user: {

@@ -3,6 +3,7 @@ import { Get, Paths } from '../types';
 import { GameState, useGameState } from './GameState';
 import { useCallback } from 'react';
 import useAsRef from './useAsRef';
+import { produce } from 'immer';
 
 export type ValueOrCallback<T> = T | ((prev: T) => T);
 
@@ -26,7 +27,9 @@ export default function useProperty<TPath extends Paths<GameState>>(
 		}
 
 		useGameState.setState((state) => {
-			return set(state, path, nState);
+			return produce(state, (draft) => {
+				set(draft, path, nState);
+			});
 		});
 	}, []);
 
