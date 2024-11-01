@@ -1,22 +1,22 @@
-import { get, isFunction, set } from 'radash';
-import { Get, Paths } from '../types';
-import { GameState, useGameState } from './GameState';
-import { useCallback } from 'react';
-import useAsRef from './useAsRef';
-import { produce } from 'immer';
+import { get, isFunction, set } from "radash";
+import type { Get, Paths } from "../types";
+import { type GameState, useGameState } from "./GameState";
+import { useCallback } from "react";
+import useAsRef from "./useAsRef";
 
 export type ValueOrCallback<T> = T | ((prev: T) => T);
 
 export default function useProperty<TPath extends Paths<GameState>>(
-	path: TPath
+	path: TPath,
 ) {
 	const state = useGameState<Get<GameState, TPath>>((state) =>
-		get(state, path)
+		get(state, path),
 	);
 	type TState = typeof state;
 
 	const stateRef = useAsRef(state);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	const setState = useCallback((valueOrCallback: ValueOrCallback<TState>) => {
 		let nState: TState;
 
@@ -27,9 +27,7 @@ export default function useProperty<TPath extends Paths<GameState>>(
 		}
 
 		useGameState.setState((state) => {
-			return produce(state, (draft) => {
-				set(draft, path, nState);
-			});
+			return set(state, path, nState);
 		});
 	}, []);
 

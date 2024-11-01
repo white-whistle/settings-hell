@@ -1,12 +1,12 @@
-import { produce } from 'immer';
-import { create, StateCreator } from 'zustand';
-import { persist, PersistOptions } from 'zustand/middleware';
+import { produce } from "immer";
+import { create, type StateCreator } from "zustand";
+import { persist, type PersistOptions } from "zustand/middleware";
 
 type Vector<
 	N extends number,
 	T,
-	R extends unknown[] = []
-> = R['length'] extends N ? R : Vector<N, T, [T, ...R]>;
+	R extends unknown[] = [],
+> = R["length"] extends N ? R : Vector<N, T, [T, ...R]>;
 
 export type GameState = {
 	user: {
@@ -17,14 +17,14 @@ export type GameState = {
 		antBuffer: Vector<10, boolean>;
 	};
 
-	theme: 'dark' | 'light';
+	theme: "dark" | "light";
 
-	noprop: '';
+	noprop: "";
 };
 
 type MyPersist = (
 	config: StateCreator<GameState>,
-	options: PersistOptions<GameState, Partial<GameState>>
+	options: PersistOptions<GameState, Partial<GameState>>,
 ) => StateCreator<GameState>;
 
 export const useGameState = create<GameState>()(
@@ -38,19 +38,19 @@ export const useGameState = create<GameState>()(
 				>,
 			},
 			user: {
-				username: '',
+				username: "",
 			},
-			theme: 'light',
-			noprop: '',
+			theme: "light",
+			noprop: "",
 		}),
-		{ name: 'SettingsHell-GameState' }
-	)
+		{ name: "SettingsHell-GameState" },
+	),
 );
 
 export function updateGameState(modifier: (prev: GameState) => void) {
 	useGameState.setState(
 		produce(useGameState.getState(), (draft) => {
 			modifier(draft);
-		})
+		}),
 	);
 }
