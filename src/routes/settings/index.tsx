@@ -7,6 +7,8 @@ import BlackMarket from "./BlackMarket";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import License from "./License";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
+import Wilderness from "./Wilderness";
+import ForestIcon from "@mui/icons-material/Forest";
 
 export const SettingsRoutes = {
 	GENERAL: {
@@ -22,6 +24,13 @@ export const SettingsRoutes = {
 		name: "User",
 		component: User,
 		icon: PersonIcon,
+	},
+	Wilderness: {
+		id: "wilderness",
+		path: "/wilderness",
+		name: "Wilderness",
+		component: Wilderness,
+		icon: ForestIcon,
 	},
 	License: {
 		id: "license",
